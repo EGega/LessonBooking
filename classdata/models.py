@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 
 
@@ -23,7 +23,10 @@ class Teachers(models.Model):
   teacher_review = models.TextField()
   teacher_stars = models.IntegerField(choices=STARS, default=5)
 
-class Student(models.Model):
+
+
+class Students(models.Model):
   first_name = models.CharField(max_length=40)
   last_name = models.CharField(max_length=40)
-  profile_photo = models.ImageField(upload_to='studentImgs', blank=True) #temporary blank true but I need to change with the final version
+  profile_photo = models.ImageField(upload_to='studentImgs', blank=True, null=True) #temporary blank true but I need to change with the final version
+  after_lesson_comments = ArrayField(models.TextField())
