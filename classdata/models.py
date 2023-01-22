@@ -30,3 +30,8 @@ class Students(models.Model):
   last_name = models.CharField(max_length=40)
   profile_photo = models.ImageField(upload_to='studentImgs', blank=True, null=True) #temporary blank true but I need to change with the final version
   after_lesson_comments = ArrayField(models.TextField())
+
+
+class Lessons(models.Model):
+  teacher = models.ForeignKey(Teachers, related_name="teachers", on_delete=models.CASCADE)
+  student = models.ForeignKey(Students, related_name="students", on_delete=models.CASCADE)
